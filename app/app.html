@@ -4,16 +4,30 @@
     <meta charset="utf-8">
     <title>Electron Boilerplate</title>
 
+    <!-- Angular Material CSS now available via Google CDN; version 0.10 used here -->
+    <link rel="stylesheet" href="vendor/angular/angular-material.min.css">
+    <link rel="stylesheet" href="vendor/ionic/css/ionic.min.css">
+
     <link href="./stylesheets/main.css" rel="stylesheet" type="text/css">
 
     <script src="vendor/electron_boilerplate/env_config.js"></script>
     <script src="vendor/electron_boilerplate/context_menu.js"></script>
     <script src="vendor/electron_boilerplate/external_links.js"></script>
 
-    <script src="vendor/require.js"></script>
-    <script>
-        requirejs(['app'], function (app) {});
-    </script>
+    <script src="vendor/lodash.js"></script>
+    <!-- Angular Material Dependencies -->
+    <script src="vendor/ionic/js/ionic.js"></script>
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular/angular-animate.min.js"></script>
+    <script src="vendor/angular/angular-sanitize.min.js"></script>
+    <script src="vendor/angular/angular-ui-router.min.js"></script>
+    <script src="vendor/angular/angular-aria.min.js"></script>
+
+    <script src="vendor/ionic/js/ionic-angular.js"></script>
+
+    <!-- Angular Material Javascript now available via Google CDN; version 0.10 used here -->
+    <script src="vendor/angular/angular-material.min.js"></script>
+
 
 </head>
 <body>
