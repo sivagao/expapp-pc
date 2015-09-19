@@ -46,9 +46,9 @@
           <section hide-md show-gt-md>
             <h2>Main</h2>
             <ul>
-              <li>最新</li>
-              <li>热门</li>
-              <li>表情广场</li>
+              <li ui-sref="exp-latest">最新</li>
+              <li ui-sref="exp-hot">热门</li>
+              <li ui-sref="exp-plaza">表情广场</li>
             </ul>
 
             <h2>个人</h2>
@@ -70,39 +70,8 @@
         </md-content>
       </md-sidenav>
 
-      <md-content flex layout-padding>
-        <div layout="column" layout-fill layout-align="top center">
-          <md-grid-list
-            md-cols-sm="1" md-cols-md="2" md-cols-gt-md="6"
-            md-row-height-gt-md="1:1" md-row-height="2:2"
-            md-gutter="12px" md-gutter-gt-sm="8px" >
-
-            <md-grid-tile class="gray"
-                md-rowspan="1" md-colspan="1"
-                ng-repeat="i in emotionList track by $index"
-                ng-click="goDetail(pkg)">
-              <img ng-src="{{emotionMap[i].full_url}}" alt="thumbnail">
-              <!-- <md-grid-tile-footer>
-                <h3>{{pkg.setTittle}} - {{pkg.tagTwo}} + {{pkg.bdSetImgNum}} 张图</h3>
-              </md-grid-tile-footer> -->
-            </md-grid-tile>
-
-          </md-grid-list>
-          <div>
-            <md-button ng-click="toggleLeft()"
-              class="md-primary" hide-gt-md>
-              Toggle left
-            </md-button>
-          </div>
-          <div>
-            <md-button ng-click="toggleRight()"
-              class="md-primary">
-              Toggle right
-            </md-button>
-          </div>
-        </div>
-        <div flex></div>
-      </md-content>
+      <!-- Main Container -->
+      <md-content flex layout-padding  ui-view></md-content>
 
       <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
         <md-toolbar class="md-theme-light">

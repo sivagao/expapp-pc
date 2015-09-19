@@ -1,0 +1,20 @@
+<div ng-controller="expPlazaCtrl" class="pg-exp-plaza">
+  <div layout="column" layout-fill layout-align="top center">
+  <ion-content delegate-handle="listView">
+    <ul class="x-grid">
+        <li ng-repeat="i in packageList track by $index"
+          ng-click="goPack(i, coverList[$index])">
+            <img ng-src="{{coverList[$index].full_url}}">
+            <span class="title">{{i.name}}</span>
+        </li>
+    </ul>
+    <ion-infinite-scroll
+      ng-if="hasMoreItems"
+      icon="ion-load-d"
+      on-infinite="loadMoreItems()"
+      distance="1%">
+    </ion-infinite-scroll>
+  </ion-content>
+  </div>
+  <div flex></div>
+</div>

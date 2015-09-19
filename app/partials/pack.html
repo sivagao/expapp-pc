@@ -1,0 +1,7 @@
+<div class="pg-exp-pack" ng-controller="expPackCtrl">
+  <ul class="x-grid">
+      <li ng-repeat="i in package.contents track by $index" ng-click="openExpressionDetail(detailList[i])">
+          <img ng-src="{{detailList[i].full_url}}">
+      </li>
+  </ul>
+</div>

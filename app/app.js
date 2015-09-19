@@ -1,8 +1,3 @@
-// -----------------------------------------------------
-// Here is the starting point for your own code.
-// All stuff below is just to show you how it works.
-// -----------------------------------------------------
-
 // Browser modules are imported through new ES6 syntax.
 // import { greet } from './hello_world/hello_world';
 
@@ -34,6 +29,29 @@ App.config(($httpProvider)=>{
   // $httpProvider.defaults.timeout = 5000;
   $httpProvider.interceptors.push('$indicator');
 });
+/* Routes */
+App.config(($stateProvider, $urlRouterProvider)=>{
+
+  $stateProvider
+    .state('exp-hot', {
+      url: '/exp/hot',
+      templateUrl: 'partials/hot.html'
+    })
+    .state('exp-latest', {
+      url: '/exp/latest',
+      templateUrl: 'partials/latest.html'
+    })
+    .state('exp-plaza', {
+      url: '/exp/plaza',
+      templateUrl: 'partials/plaza.html'
+    })
+    .state('exp-pack', {
+      url: '/exp/pack/:id',
+      templateUrl: 'partials/pack.html'
+    });
+
+  $urlRouterProvider.otherwise('/exp/hot');
+});
 
 App.run(($rootScope, $api)=>{
   $rootScope.APIHOST = 'http://x.is26.com:8011';
@@ -47,14 +65,73 @@ App.run(($rootScope, $api)=>{
 });
 
 App
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log, $notice, $api) {
-
+  .controller('expHotCtrl', ($api, $scope)=>{
     $api('getFacehubEmotions', null, {
       indicator: 'global'
     }).then((r)=>{
       $scope.emotionList = r.data.list.contents;
       $scope.emotionMap = r.data.list.details;
     });
+  })
+  .controller('expPlazaCtrl', ($api, $scope, $ionicScrollDelegate, $timeout)=>{
+    var page = 1, isAjaxing = false;
+    $scope.hasMoreItems = true;
+    $scope.packageList = [];
+    $scope.coverList = [];
+    function fetchItems(page) {
+      var isAjaxing = true;
+      $api('getPackages', {
+        number: 20,
+        section: 2,
+        page: page
+      }, {
+        indicator: 'global'
+      }).then((r)=>{
+        if(!r.data.packages.length) {
+          hasMoreItems = false;
+        }
+        $scope.packageList = $scope.packageList.concat(r.data.packages);
+        $scope.coverList = $scope.coverList.concat(r.data.cover_detail);
+        isAjaxing = false;
+        $timeout(()=>{
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+          $ionicScrollDelegate.$getByHandle('listView').resize();
+        }, 100);
+      });
+    }
+    fetchItems(page);
+    $scope.loadMoreItems = ()=>{
+      if(isAjaxing) return;
+      if(!$scope.hasMoreItems) return;
+      ++page;
+      fetchItems(page);
+    }
+  })
+  .controller('expPackCtrl', ($scope, $api, $state)=>{
+    $api('getPackage', {
+      __embed: {
+        id: $state.params.id
+      }
+    }, {
+      indicator: 'global'
+    }).then((r)=>{
+      $scope.detailList = r.data.details;
+    });
+    $scope.$on('$ionicView.leave', ()=>{
+
+    });
+  })
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $mdUtil, $log, $state) {
+
+    $scope.goPack = (i, more)=>{
+      if(more) {
+        i = _.extend(_.clone(i), _.pick(more, 'full_url', 'small_url'));
+      }
+      $scope.$root.package = i;
+      $state.go('exp-pack', {
+        id: i.id
+      });
+    };
 
     $scope.toggleLeft = buildToggler('left');
     $scope.toggleRight = buildToggler('right');

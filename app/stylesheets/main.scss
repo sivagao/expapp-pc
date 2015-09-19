@@ -14,3 +14,30 @@ md-grid-tile img {
   width: 100%;
   height: 100%;
 }
+
+.pg-exp-plaza {
+
+}
+
+.x-grid {
+  & > *, .tile {
+    width: 15vw;
+    height: 15vw;
+    border: 1px solid #eee;
+    display: inline-block;
+    position: relative;
+    .title {
+      position: absolute;
+      bottom: 0;
+      background: rgba(0,0,0,.7);
+      text-align: center;
+      color: #fff;
+      width: 100%;
+      line-height: 30px;
+    }
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
