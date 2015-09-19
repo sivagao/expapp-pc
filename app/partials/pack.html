@@ -1,7 +1,13 @@
-<div class="pg-exp-pack" ng-controller="expPackCtrl">
+<ion-view view-title="{{Pack.name}}" class="pg-packages-detail" ng-controller="expPackCtrl">
+  <ion-nav-bar>
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+
   <ul class="x-grid">
-      <li ng-repeat="i in package.contents track by $index" ng-click="openExpressionDetail(detailList[i])">
+      <li ng-repeat="i in Pack.contents track by $index"
+        ng-click="openEmotion(detailList[i])">
           <img ng-src="{{detailList[i].full_url}}">
       </li>
   </ul>
-</div>
+</ion-view>

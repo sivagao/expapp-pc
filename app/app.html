@@ -35,9 +35,9 @@
 <body ng-app="MyApp">
   <div ng-controller="AppCtrl" layout="column" class="app-container">
     <section layout="row" flex>
-      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+      <md-sidenav class="x-sidenav-menu md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
         <md-toolbar class="md-theme-indigo">
-          <h1 class="md-toolbar-tools">Sidenav Left</h1>
+          <h1 class="md-toolbar-tools">Look表情</h1>
         </md-toolbar>
         <md-content layout-padding ng-controller="LeftCtrl">
           <md-button ng-click="close()" class="md-primary" hide-gt-md>
@@ -71,15 +71,27 @@
       </md-sidenav>
 
       <!-- Main Container -->
-      <md-content flex layout-padding  ui-view></md-content>
+      <!-- <md-content flex layout-padding ui-view></md-content> -->
+      <ion-nav-view></ion-nav-view>
 
-      <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
-        <md-toolbar class="md-theme-light">
-          <h1 class="md-toolbar-tools">Sidenav Right</h1>
-        </md-toolbar>
+      <md-sidenav class="x-sidenav-info md-sidenav-right md-whiteframe-z2" md-component-id="right">
         <md-content ng-controller="RightCtrl" layout-padding>
+          <div class="hero-image padding">
+              <img ng-src="{{Emotion.full_url}}">
+          </div>
+          <div class="padding action-list">
+              <button class="button button-block" ng-click="sendTo('wechat', Emotion)">
+                  <i class="icon ion-social-reddit-outline"></i>
+                  微信分享
+              </button>
+              <button class="button button-block" ng-click="sendTo('qq', Emotion)">
+                  <i class="icon ion-social-github-outline"></i>
+                  QQ分享
+              </button>
+          </div>
+
           <md-button ng-click="close()" class="md-primary">
-            Close Sidenav Right
+            关闭
           </md-button>
         </md-content>
       </md-sidenav>

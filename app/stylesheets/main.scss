@@ -19,6 +19,23 @@ md-grid-tile img {
 
 }
 
+md-sidenav.x-sidenav-menu {
+  min-width: 160px;
+  width: 160px;
+  max-width: 160px;
+}
+
+.x-sidenav-info {
+  min-width: 280px;
+  width: 360px;
+  max-width: 400px;
+
+  text-align: center;
+  img {
+    width: 98%;
+  }
+}
+
 .x-grid {
   & > *, .tile {
     width: 15vw;

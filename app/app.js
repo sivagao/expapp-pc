@@ -25,7 +25,8 @@ App.factory('$temp', $temp);
 import $validator from './components/services/$validator';
 App.factory('$validator', $validator);
 
-App.config(($httpProvider)=>{
+App.config(($httpProvider, $ionicConfigProvider)=>{
+  $ionicConfigProvider.views.forwardCache(true);
   // $httpProvider.defaults.timeout = 5000;
   $httpProvider.interceptors.push('$indicator');
 });
@@ -127,10 +128,15 @@ App
       if(more) {
         i = _.extend(_.clone(i), _.pick(more, 'full_url', 'small_url'));
       }
-      $scope.$root.package = i;
+      $scope.$root.Pack = i;
       $state.go('exp-pack', {
         id: i.id
       });
+    };
+
+    $scope.openEmotion = (i)=>{
+      $scope.$root.Emotion = i;
+      $scope.toggleRight();
     };
 
     $scope.toggleLeft = buildToggler('left');
