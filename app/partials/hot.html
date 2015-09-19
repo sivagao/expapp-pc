@@ -1,9 +1,10 @@
 <ion-view ng-controller="expHotCtrl">
-  <ion-content>
+  <ion-content lazy-scroll>
     <ul class="x-grid">
       <li ng-repeat="i in emotionList track by $index"
         ng-click="openEmotion(emotionMap[i])">
-        <img ng-src="{{emotionMap[i].full_url}}" alt="thumbnail">
+        <img image-lazy-src="{{emotionMap[i].full_url}}"
+          image-lazy-loader="vendor/loading.gif">
       </li>
     </ul>
   </ion-content>

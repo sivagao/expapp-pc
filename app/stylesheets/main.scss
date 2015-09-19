@@ -20,15 +20,15 @@ md-grid-tile img {
 }
 
 md-sidenav.x-sidenav-menu {
-  min-width: 160px;
-  width: 160px;
-  max-width: 160px;
+  min-width: 16vw;
+  width: 16vw;
+  max-width: 16vw;
 }
 
 .x-sidenav-info {
-  min-width: 280px;
-  width: 360px;
-  max-width: 400px;
+  min-width: 35vw;
+  width: 35vw;
+  max-width: 35vw;
 
   text-align: center;
   img {
@@ -38,11 +38,21 @@ md-sidenav.x-sidenav-menu {
 
 .x-grid {
   & > *, .tile {
-    width: 15vw;
-    height: 15vw;
+    width: 20vw;
+    height: 20vw;
+    margin: .5vw;
     border: 1px solid #eee;
     display: inline-block;
     position: relative;
+
+    .image-loader-container {
+      width: 3vw;
+      height: 3vw;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
     .title {
       position: absolute;
       bottom: 0;

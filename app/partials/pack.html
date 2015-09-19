@@ -4,10 +4,13 @@
     </ion-nav-back-button>
   </ion-nav-bar>
 
-  <ul class="x-grid">
-      <li ng-repeat="i in Pack.contents track by $index"
-        ng-click="openEmotion(detailList[i])">
-          <img ng-src="{{detailList[i].full_url}}">
-      </li>
-  </ul>
+  <ion-content lazy-scroll>
+    <ul class="x-grid">
+        <li ng-repeat="i in Pack.contents track by $index"
+          ng-click="openEmotion(detailList[i])">
+            <img image-lazy-loader="vendor/loading.gif"
+              image-lazy-src="{{detailList[i].full_url}}">
+        </li>
+    </ul>
+  </ion-content>
 </ion-view>

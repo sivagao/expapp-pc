@@ -9,7 +9,8 @@ var envName = window.env.name;
 
 var App = angular.module('MyApp', [
   'ngMaterial', 'ionic',
-  'ngSanitize', 'ui.router', 'ngAnimate'
+  'ngSanitize', 'ui.router', 'ngAnimate',
+  'ionicLazyLoad'
 ]);
 
 import $api from './components/services/$api';
@@ -30,6 +31,7 @@ App.config(($httpProvider, $ionicConfigProvider)=>{
   // $httpProvider.defaults.timeout = 5000;
   $httpProvider.interceptors.push('$indicator');
 });
+
 /* Routes */
 App.config(($stateProvider, $urlRouterProvider)=>{
 
