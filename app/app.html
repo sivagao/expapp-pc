@@ -38,38 +38,92 @@
   <div ng-controller="AppCtrl" layout="column" class="app-container">
     <section layout="row" flex>
       <md-sidenav class="x-sidenav-menu md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+
+        <!-- <md-menu-content>
+        <h2>Main</h2>
+          <md-menu-item>
+            <md-button>
+              最新
+            </md-button>
+          </md-menu-item>
+          <md-menu-item>
+            <md-button>
+              热门
+            </md-button>
+          </md-menu-item>
+          <md-menu-divider></md-menu-divider>
+          <md-menu-item>
+            <md-button ng-click="ctrl.toggleNotifications()">
+              <md-icon md-svg-icon="social:notifications-{{ctrl.notificationsEnabled ? 'off' : 'on'}}"></md-icon>
+              {{ctrl.notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+            </md-button>
+          </md-menu-item>
+        </md-menu-content> -->
+
         <md-toolbar class="md-theme-indigo">
           <h1 class="md-toolbar-tools">Look表情</h1>
         </md-toolbar>
+
         <md-content layout-padding ng-controller="LeftCtrl">
-          <md-button ng-click="close()" class="md-primary" hide-gt-md>
+          <!-- <md-button ng-click="close()" class="md-primary" hide-gt-md>
             Close Sidenav Left
-          </md-button>
+          </md-button> -->
           <section hide-md show-gt-md>
             <h2>Main</h2>
             <ul>
-              <li ui-sref="exp-latest">最新</li>
-              <li ui-sref="exp-hot">热门</li>
-              <li ui-sref="exp-plaza">表情广场</li>
+              <md-button ui-sref="exp-latest"
+                ui-sref-active="active">
+                <i class="ion-paper-airplane"></i>
+                最新
+              </md-button>
+              <md-button ui-sref="exp-hot"
+                ui-sref-active="active">
+                <i class="ion-arrow-graph-up-right"></i>
+                热门
+              </md-button>
+              <md-button ui-sref="exp-plaza"
+                ui-sref-active="active">
+                <i class="ion-stats-bars"></i>
+                表情广场
+              </md-button>
             </ul>
-
             <h2>个人</h2>
             <ul>
-              <li>Profile</li>
-              <li>喜欢</li>
-              <li>收藏</li>
+              <md-button ui-sref="exp-latest">
+                <i class="ion-calendar"></i>
+                Profile
+              </md-button>
+              <md-button ui-sref="exp-hot">
+                <i class="ion-coffee"></i>
+                喜欢
+              </md-button>
+              <md-button ui-sref="exp-plaza">
+                <i class="ion-cloud"></i>
+                收藏
+              </md-button>
             </ul>
-
             <h2>工具</h2>
             <ul>
-              <li>颜文字</li>
-              <li>emojo</li>
-              <li>王尼玛</li>
+              <md-button ui-sref="exp-latest">
+                <i class="ion-at"></i>
+                颜文字
+              </md-button>
+              <md-button ui-sref="exp-hot">
+                <i class="ion-aperture"></i>
+                emojo
+              </md-button>
+              <md-button ui-sref="exp-plaza">
+                <i class="ion-crop"></i>
+                王尼玛制作
+              </md-button>
             </ul>
-
-            <h2>表情合集 +</h2>
+            <h2>
+              表情合集
+              <i class="ion-plus-circled"></i>
+            </h2>
           </section>
         </md-content>
+
       </md-sidenav>
 
       <!-- Main Container -->
