@@ -5,7 +5,7 @@
     "fs-jetpack": "^0.7.0",
     "gulp": "^3.9.0",
     "gulp-babel": "^5.2.1",
-    "gulp-less": "^3.0.3",
+    "gulp-sass": "~2.0.0",
     "gulp-sourcemaps": "^1.5.2",
     "gulp-util": "^3.0.6",
     "q": "^1.4.1",

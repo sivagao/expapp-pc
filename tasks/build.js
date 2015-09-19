@@ -3,7 +3,7 @@
 var gulp = require('gulp');
 var babel = require('gulp-babel');
 var sourcemaps = require('gulp-sourcemaps');
-var less = require('gulp-less');
+var scss = require('gulp-sass');
 var jetpack = require('fs-jetpack');
 
 var utils = require('./utils');
@@ -51,7 +51,7 @@ gulp.task('copy-watch', copyTask);
 var transpileTask = function () {
     return gulp.src(paths.jsCodeToTranspile)
     .pipe(sourcemaps.init())
-    .pipe(babel({ modules: 'amd' }))
+    .pipe(babel())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(destDir.path()));
 };
@@ -59,13 +59,13 @@ gulp.task('transpile', ['clean'], transpileTask);
 gulp.task('transpile-watch', transpileTask);
 
 
-var lessTask = function () {
-    return gulp.src('app/stylesheets/main.less')
-    .pipe(less())
+var scssTask = function () {
+    return gulp.src('app/stylesheets/main.scss')
+    .pipe(scss())
     .pipe(gulp.dest(destDir.path('stylesheets')));
 };
-gulp.task('less', ['clean'], lessTask);
-gulp.task('less-watch', lessTask);
+gulp.task('scss', ['clean'], scssTask);
+gulp.task('scss-watch', scssTask);
 
 
 gulp.task('finalize', ['clean'], function () {
@@ -96,8 +96,8 @@ gulp.task('finalize', ['clean'], function () {
 gulp.task('watch', function () {
     gulp.watch(paths.jsCodeToTranspile, ['transpile-watch']);
     gulp.watch(paths.copyFromAppDir, { cwd: 'app' }, ['copy-watch']);
-    gulp.watch('app/**/*.less', ['less-watch']);
+    gulp.watch('app/**/*.scss', ['scss-watch']);
 });
 
 
-gulp.task('build', ['transpile', 'less', 'copy', 'finalize']);
+gulp.task('build', ['transpile', 'scss', 'copy', 'finalize']);
